@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="UTF-8">
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="fengyuhao" />
+  <meta name="date" content="2018-10-10" />
+  <title>2018-10-10</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="github-pandoc.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="tower-comment.css" type="text/css" /> -->
+</head>
+<body>
+
+    <div id="header">
+<h1 class="title">2019-09-21</h1>
+<h2 class="author">corvo</h2>
+<h3 class="date">2019-09-21</h3>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#vsnips">Vsnips</a></li>
+</ul>
+</div>
+<p><a href="">Current Weekly</a></p>
+<hr />
+<h1 id="vsnips">Vsnips</h1>
+<p>允许用户在VScode中使用UltiSnips语法的代码片段.</p>
+<blockquote>
+<p>程序依然在开发中, 虽然我不能保证所有的UltiSnips片段都可以在vscode中使用, 但我会尽最大的努力去兼容UltiSnips, 并且允许用户自定义一些功能函数.</p>
+<p>有任何想法欢迎开issue或是pull requests.</p>
+</blockquote>
+<p>定义UltiSnipts格式的代码片段是十分简单的, 以<code>Python</code>语言为例, 我平时会经常用到<code>import IPython; IPython.embed()</code>, 在UltiSnips中, 你可以这样用:</p>
+<pre class="snippets"><code># 请注意, 下面的片段必须保存在python.snippets, 这样才能被Python语言使用.
+snippet dbg &quot;Use IPython to debug&quot;
+# ---------- XXX: Can&#39;t GIT add [START] ---------- #
+import IPython
+IPython.embed(using=False)
+# ---------- XXX: Can&#39;t GIT add  [END]  ---------- #
+endsnippet</code></pre>
+<p>从上面的实例来看, 一个代码片段以<code>snippet</code>开头, 以<code>endsnippet</code>结尾, 随后的<code>dbg</code>用于触发这个片段, <code>"Use IPython to debug"</code>自然就是 这一片段的描述信息了, 在我的vim中, 此片段有如下的效果:</p>
+<pre class="mindmap"><code>#主题
+##一级分支
+###二级分支
+##一级分支
+##一级分支
+###二级分支
+#### 这是一个测试文本
+###第二个二级分支
+####三级分支</code></pre>
+</body>
+</html>

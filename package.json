@@ -1,0 +1,26 @@
+{
+  "name": "hexo-script-tiny",
+  "version": "1.0.0",
+  "description": "Usefule scripts for static sites.",
+  "main": "webpack.config.dev.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.dev.js --disableHostCheck=true",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo"
+  ],
+  "devDependencies": {
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.0.7",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "author": "corvofeng",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "kityminder-core": "^1.4.50"
+  },
+  "license": "MIT"
+}
