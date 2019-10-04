@@ -11,13 +11,14 @@
  *=======================================================================
  */
 
-// import * as $ from "jquery";
-import * as flowchart from "flowchart.js"
+import { AddOnload, uid } from "./util";
+import * as flowchart from "flowchart.js";
+import mermaid from "mermaid";
 
 // return new div
-function renderFlowchartjsWithSoure(parent, data) {
+function renderFlowchartjsWithSoure(divForRender, data) {
   const newDiv = document.createElement('div');
-  parent.appendChild(newDiv);
+  divForRender.appendChild(newDiv);
   const diagram = flowchart.parse(data);
   // you can also try to pass options:
   const diagStyle = {
@@ -60,35 +61,60 @@ function renderFlowchartjsWithSoure(parent, data) {
 
   try {
     diagram.drawSVG(newDiv, diagStyle);
-  } catch(err) {
-    console.log("render: ", data, "with error: ", err)
+  } catch (err) {
+    console.log("render flowchart: ", data, "with error: ", err);
   }
-
   return newDiv;
 }
 
-function renderAllCharts() {
-  let charts = document.getElementsByClassName('flowchartjs-code');
+function renderMermaidWithSource(divForRender, data) {
+  const newDiv = document.createElement('div');
+  const tmpID = uid()
+  newDiv.setAttribute('id', tmpID);
+  divForRender.appendChild(newDiv);
+  newDiv.setAttribute('class', 'mermaid');
+  newDiv.innerHTML = data;
+  var insertSvg = function (svgCode, bindFunctions) {
+    newDiv.innerHTML = svgCode;
+    console.log(newDiv);
+  };
+  try {
+    mermaid.init({noteMargin: 10}, `#${tmpID}`);
+    // TODO: Change to mermaidAPI, currently the mermaidAPI render not work properly.
+    // mermaid.mermaidAPI.render(tmpID, data, insertSvg);
+  } catch (err) {
+    console.log("render mermaid: ", data, "with error:", err);
+  }
+  return newDiv;
+}
 
+/**
+ * @param {*} codeDiv
+ * @param {*} renderedFunc function(div, data)
+ *    after create new div, use this function to render data to chart.
+ */
+function renderChart(codeDiv, renderFunc) {
+  const parent = codeDiv.parentNode;
+  const wrapper = document.createElement('pre');
+  codeDiv.style.display = "none";
+  parent.replaceChild(wrapper, codeDiv);
+  wrapper.appendChild(codeDiv);
+  renderFunc(wrapper, codeDiv.innerText);
+}
+
+function renderAllCharts() {
+  let charts = [];
+  charts = document.getElementsByClassName('flowchartjs-code');
   for (let i = 0; i < charts.length; i++) {
     const chartCodeDiv = charts[i];
-    const parent = chartCodeDiv.parentNode;
-    const wrapper = document.createElement('pre');
-    chartCodeDiv.style.display = "none";
-    parent.replaceChild(wrapper, chartCodeDiv);
-    wrapper.appendChild(chartCodeDiv);
-    renderFlowchartjsWithSoure(wrapper, chartCodeDiv.innerText);
+    renderChart(chartCodeDiv, renderFlowchartjsWithSoure);
   }
 
   charts = document.getElementsByClassName('mermaid-code');
-
   for (let i = 0; i < charts.length; i++) {
     const chartCodeDiv = charts[i];
-
+    renderChart(chartCodeDiv, renderMermaidWithSource);
   }
-
-
-
 }
 
-renderAllCharts();
+AddOnload(renderAllCharts);

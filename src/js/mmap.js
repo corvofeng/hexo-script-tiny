@@ -14,10 +14,12 @@
 // kity must be imported: https://github.com/fex-team/kityminder-core/issues/36
 // const kity = require("../../node_modules/kity/dist/kity");
 // require("../../node_modules/kityminder-core/dist/kityminder.core");
-const kity = require("kity");
-require("kityminder-core");
-var kityminder = window.kityminder; // The kity has benn imported as a window member.
-const $ = require("jquery");
+
+import "kity";
+import "kityminder-core";
+import { AddOnload } from "./util";
+
+const kityminder = window.kityminder; // The kity has been imported as a window member.
 
 function renderAllMindmap() {
   let mindmaps = document.getElementsByClassName('mindmap');
@@ -47,6 +49,4 @@ function renderAllMindmap() {
   }
 }
 
-$(document).ready(function () {
-  renderAllMindmap();
-})
+AddOnload(renderAllMindmap);
