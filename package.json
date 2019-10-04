@@ -20,7 +20,6 @@
   "author": "corvofeng",
   "dependencies": {
     "flowchart.js": "^1.12.2",
-    "jquery": "^3.4.1",
     "kityminder-core": "^1.4.50",
     "mermaid": "^8.3.1"
   },
