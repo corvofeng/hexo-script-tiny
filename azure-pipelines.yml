@@ -1,0 +1,30 @@
+trigger:
+- master
+
+pool: AliDeploy
+
+variables:
+  builddir: /home/azure/Workspaces/hexo-script-tiny
+  distdir: /var/www/blog/hexo-script
+
+steps:
+- script: echo "$(distdir)"
+  displayName: 'Run a one-line script'
+
+- script: |
+    pwd
+    echo "$(System.DefaultWorkingDirectory)"
+  displayName: 'pwd and echo dir'
+
+- script: |
+    rsync --delete -rv --exclude '.git' $(System.DefaultWorkingDirectory)/* $(builddir)
+  displayName: 'Sync the source code'
+
+- script: cd $(builddir) && npm install && npm run build
+  displayName: 'Generate the dist'
+
+- script: |
+    rsync --delete -rv $(builddir)/dist/* $(distdir)
+  displayName: 'Sync the dist file'
+
+
