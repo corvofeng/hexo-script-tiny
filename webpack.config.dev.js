@@ -11,6 +11,7 @@ module.exports = {
     style: "./src/js/style/style.js",
     index: "./src/js/index.js",
     coder: "./src/js/coder.js",
+    flow: "./src/js/flow.js",
     mmap: "./src/js/mmap.js",
   },
   resolve: {
@@ -85,7 +86,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./src/index.html",
-      chunks: ["style", "index", "coder", "mmap"]
+      chunks: ["style", "index", "coder", "mmap", "flow"]
     }),
     new HtmlWebpackPlugin({
       filename: "test.html",
