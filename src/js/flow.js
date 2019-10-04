@@ -74,14 +74,16 @@ function renderMermaidWithSource(divForRender, data) {
   divForRender.appendChild(newDiv);
   newDiv.setAttribute('class', 'mermaid');
   newDiv.innerHTML = data;
-  var insertSvg = function (svgCode, bindFunctions) {
-    newDiv.innerHTML = svgCode;
-    console.log(newDiv);
-  };
+
+  // TODO: Change to mermaidAPI, currently the mermaidAPI render not work properly.
+  // var insertSvg = function (svgCode, bindFunctions) {
+  //   newDiv.innerHTML = svgCode;
+  //   console.log(newDiv);
+  // };
+  // mermaid.mermaidAPI.render(tmpID, data, insertSvg);
+
   try {
-    mermaid.init({noteMargin: 10}, `#${tmpID}`);
-    // TODO: Change to mermaidAPI, currently the mermaidAPI render not work properly.
-    // mermaid.mermaidAPI.render(tmpID, data, insertSvg);
+    mermaid.init({ noteMargin: 10 }, `#${tmpID}`);
   } catch (err) {
     console.log("render mermaid: ", data, "with error:", err);
   }
