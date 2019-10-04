@@ -20,35 +20,5 @@ module.exports = {
     chunkFilename: "[id].bundle_[chunkhash].js",
     // sourceMapFilename: "[file].map"
   },
-
-  /*
-  module: {
-    rules: [{
-        test: /\.css$/,
-        include: [
-          path.join(__dirname, "src/css"),
-          path.join(__dirname, "src"),
-          path.join(__dirname),
-        ],
-        loaders: [
-          "style-loader",
-          "css-loader",
-        ]
-      },
-      {
-        test: /\.tsx?$/,
-        loader: "ts-loader",
-        // exclude: /node_modules/
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [{
-          loader: "file-loader",
-          options: {}
-        }]
-      },
-    ]
-  },
-  */
   mode: "production",
 };
