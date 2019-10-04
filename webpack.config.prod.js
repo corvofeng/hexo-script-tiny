@@ -3,14 +3,11 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 //var ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpackMajorVersion = require("webpack/package.json").version.split(".")[0];
+const genEntry = require('./webpack.config.dev').entry;
 
 module.exports = {
   context: __dirname,
-  // The code mirror need load style first.
-  entry: {
-    style: "./src/js/style/style.js",
-    index: "./src/js/index.tsx",
-  },
+  entry: genEntry,
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
@@ -24,6 +21,7 @@ module.exports = {
     // sourceMapFilename: "[file].map"
   },
 
+  /*
   module: {
     rules: [{
         test: /\.css$/,
@@ -49,42 +47,8 @@ module.exports = {
           options: {}
         }]
       },
-      {
-        test: /\.html$/,
-        use: {
-          loader: "html-loader",
-          options: {
-            interpolate: true
-          }
-        }
-      }
     ]
   },
-  devServer: {
-    contentBase: [
-      path.resolve(__dirname, "dist"),
-      path.resolve(__dirname, "node_modules"),
-      path.resolve(__dirname, "src"),
-      path.resolve(__dirname, "src/js"),
-      path.resolve(__dirname, "src/css"),
-    ],
-    "host": "0.0.0.0",
-    "disableHostCheck": true,
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "./src/index.html",
-      chunks: ["style", "index"]
-    }),
-    new HtmlWebpackPlugin({
-      filename: "test.html",
-      template: "./src/test.html",
-      chunks: ["index", "style"]
-    }),
-    new webpack.ProvidePlugin({
-      "React": "react",
-    }),
-  ],
-  mode: "development",
+  */
+  mode: "production",
 };

@@ -5,6 +5,7 @@
   "main": "webpack.config.dev.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --disableHostCheck=true",
+    "build": "webpack --config webpack.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
