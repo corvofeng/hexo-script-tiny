@@ -30,21 +30,21 @@ function renderAllMindmap() {
     let k = i;
 
     // 创建 km 实例
-    var minder = new kityminder.Minder({
+    const minder = new kityminder.Minder({
       renderTo: mindmaps[i],
     });
 
-    allMinders.push(minder)
+    allMinders.push(minder);
 
     // 隐藏原始属性
-    var mindText = mindmaps[k].innerText
-    mindmaps[k].children[0].style = "display:none"
+    const mindText = mindmaps[k].innerText;
+    mindmaps[k].children[0].style = "display:none";
 
-    allMinders[k].importData('markdown', mindText).then(function () {
+    minder.importData('markdown', mindText).then(function () {
       // console.log(minder === allMinders[k]);
       // console.log(allMinders[k]);
-      allMinders[k].setTheme('fresh-soil');
-      allMinders[k].execCommand('Zoom', 80);
+      minder.setTheme('fresh-soil');
+      minder.execCommand('Zoom', 80);
     });
   }
 }
