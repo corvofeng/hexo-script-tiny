@@ -40,12 +40,16 @@ function renderAllMindmap() {
     const mindText = mindmaps[k].innerText;
     mindmaps[k].children[0].style = "display:none";
 
-    minder.importData('markdown', mindText).then(function () {
-      // console.log(minder === allMinders[k]);
-      // console.log(allMinders[k]);
-      minder.setTheme('fresh-soil');
-      minder.execCommand('Zoom', 80);
-    });
+    try {
+      minder.importData('markdown', mindText).then(function () {
+        // console.log(minder === allMinders[k]);
+        // console.log(allMinders[k]);
+        minder.setTheme('fresh-soil');
+        minder.execCommand('Zoom', 80);
+      });
+    } catch (err) {
+      console.log("Error occured!!\nRender ", minder, "with ", mindText, "have err: ", err);
+    }
   }
 }
 
