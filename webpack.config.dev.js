@@ -35,9 +35,9 @@ module.exports = {
           path.join(__dirname, "src"),
           path.join(__dirname),
         ],
-        loaders: [
-          "style-loader",
-          "css-loader",
+        use: [
+          // "css-loader",
+          // "style-loader",
         ]
       },
       {
@@ -65,22 +65,21 @@ module.exports = {
         use: {
           loader: "html-loader",
           options: {
-            interpolate: true
           }
         }
       }
     ]
   },
   devServer: {
-    contentBase: [
+    allowedHosts: [
       path.resolve(__dirname, "dist"),
       path.resolve(__dirname, "node_modules"),
       path.resolve(__dirname, "src"),
       path.resolve(__dirname, "src/js"),
       path.resolve(__dirname, "src/css"),
     ],
-    "host": "0.0.0.0",
-    "disableHostCheck": true,
+    // "host": "0.0.0.0",
+    // "disableHostCheck": true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -88,11 +87,11 @@ module.exports = {
       template: "./src/index.html",
       chunks: ["style", "index", "coder", "mmap", "flow"]
     }),
-    new HtmlWebpackPlugin({
-      filename: "test.html",
-      template: "./src/test.html",
-      chunks: ["index", "style"]
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: "test.html",
+    //   template: "./src/test.html",
+    //   chunks: ["index", "style"]
+    // }),
     new webpack.ProvidePlugin({
       "React": "react",
     }),
